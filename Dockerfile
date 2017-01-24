@@ -1,0 +1,43 @@
+FROM verdel/alpine-base:latest
+MAINTAINER Vadim Aleksandrov <valeksandrov@me.com>
+
+ENV DB_HOST localhost
+ENV DB_PORT 3306
+ENV DB_USER zabbix
+ENV DB_PASS zabbix
+
+# Copy init scripts
+COPY rootfs /
+
+# Install zabbix
+RUN apk --update add \
+    bash \
+    python \
+    py-pip \
+    net-snmp-dev \
+    net-snmp-libs \
+    net-snmp \
+    net-snmp-perl \
+    net-snmp-tools \
+    mysql-client \
+    zabbix \
+    zabbix-setup \
+    zabbix-mysql \
+    zabbix-agent \
+    zabbix-utils \    
+    && pip install --upgrade pip \
+    && pip install requests \
+    # Clean up
+    && rm -rf \
+    /usr/share/man \
+    /tmp/* \
+    /var/cache/apk/*
+
+RUN chmod 640 /etc/zabbix/zabbix_server.conf
+RUN chown root:zabbix /etc/zabbix/zabbix_server.conf
+
+# Export volumes directory
+VOLUME ["/etc/zabbix/alertscripts", "/etc/zabbix/externalscripts"]
+
+# Export ports
+EXPOSE 10051/tcp 10052/tcp
