@@ -6,9 +6,6 @@ ENV DB_PORT 3306
 ENV DB_USER zabbix
 ENV DB_PASS zabbix
 
-# Copy init scripts
-COPY rootfs /
-
 # Install zabbix
 RUN apk --update add \
     bash \
@@ -32,6 +29,9 @@ RUN apk --update add \
     /usr/share/man \
     /tmp/* \
     /var/cache/apk/*
+
+# Copy init scripts
+COPY rootfs /
 
 RUN chmod 640 /etc/zabbix/zabbix_server.conf
 RUN chown root:zabbix /etc/zabbix/zabbix_server.conf
