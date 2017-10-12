@@ -17,11 +17,11 @@ RUN apk --update add \
     net-snmp-perl \
     net-snmp-tools \
     mysql-client \
-    zabbix@edge \
-    zabbix-setup@edge \
-    zabbix-mysql@edge \
-    zabbix-agent@edge \
-    zabbix-utils@edge \    
+    zabbix@community \
+    zabbix-setup@community \
+    zabbix-mysql@community \
+    zabbix-agent@community \
+    zabbix-utils@community \
     && pip install --upgrade pip \
     && pip install requests \
     # Clean up
