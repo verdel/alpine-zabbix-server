@@ -37,7 +37,7 @@ RUN chmod 640 /etc/zabbix/zabbix_server.conf
 RUN chown root:zabbix /etc/zabbix/zabbix_server.conf
 
 # Export volumes directory
-VOLUME ["/etc/zabbix/alertscripts", "/etc/zabbix/externalscripts"]
+VOLUME ["/etc/zabbix/alertscripts", "/etc/zabbix/externalscripts", "/etc/zabbix/tls"]
 
 # Export ports
 EXPOSE 10051/tcp 10052/tcp
