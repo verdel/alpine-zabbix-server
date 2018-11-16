@@ -24,6 +24,7 @@ RUN apk --update add \
     zabbix-utils@community \
     && pip install --upgrade pip \
     && pip install requests \
+    && pip install librouteros \
     # Clean up
     && rm -rf \
     /usr/share/man \
